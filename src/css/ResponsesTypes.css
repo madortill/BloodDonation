@@ -1,0 +1,17 @@
+.types-container {
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+} 
+
+.header-responses {
+    font-size: 1.6rem;
+}
+
+
+@media screen and (max-width: 600px) {
+    .expired {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,51 @@
+.end-screen {
+  direction: rtl;
+}
+
+.end-headline {
+  font-size: 6.5rem;
+  font-weight: bolder;
+  color: #EE2644;
+  margin-bottom: 0rem;
+  font-family: 'ploni-bold-aaa';
+}
+
+.to-exam-btn {
+  cursor: pointer;
+  width: 12rem;
+}
+
+.confety {
+  position: absolute;
+  width: 100vw;
+  top: 0rem;
+  left: 0rem;
+  height: 100vh;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.end-blood-bag {
+  position: absolute;
+  bottom: -11rem;
+  width: 75rem;
+  left: 0rem;
+  margin: 2rem;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .end-headline {
+    font-size: 4.5rem;
+    margin-top: 0rem;
+  }
+
+  .end-blood-bag {
+    bottom: -7rem;
+    width: 56rem;
+}
+
+}
