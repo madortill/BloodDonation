@@ -90,6 +90,11 @@
   
   .hospial-bed {
     margin-top: auto;
+    width: 23rem;
+  }
+
+  .lomda-header {
+    margin-top: 0rem;
   }
   
 }

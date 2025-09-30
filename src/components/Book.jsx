@@ -17,19 +17,19 @@ function Book({ setShowNextBtn, setDoneReading })  {
     setIsMounted(true);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 600) {
-        setDimensions({ width: 150, height: 300 });
-      } else {
-        setDimensions({ width: 350, height: 500 });
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth <= 600) {
+  //       setDimensions({ width: 150, height: 300 });
+  //     } else {
+  //       setDimensions({ width: 350, height: 500 });
+  //     }
+  //   };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   handleResize();
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   // Callback for page flip
   const onPageFlip = (e) => {
