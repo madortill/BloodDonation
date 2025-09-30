@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/PopOutBloodProducts.css";
 import arrow from "../assets/images/arrow.png";
-import one from "../assets/images/bloodProducts/one.png";
+// import one from "../assets/images/bloodProducts/one.png";
 import two from "../assets/images/bloodProducts/two.mp4";
 import three from "../assets/images/bloodProducts/three.png";
 import four from "../assets/images/bloodProducts/four.png";
@@ -21,17 +21,12 @@ function PopOutBloodProducts({
 }) {
   const arrInfo = [
     {
-      headline: "דם מלא בצה”ל",
+      headline: 'שימוש במוצרי דם בצה"ל',
       text: [
-        "שימוש דם מלא בצה”ל:",
         "תמורות בתחום החייאת בקרת נזקים בשדה לאורך השנים",
+        "ניתן לראות שנותנים טיפול בנפח איכותי יותר לאורך השנים",
       ],
-      graphUrl: [one, two],
-    },
-    {
-      headline: "שימוש במוצרי דם לאורך השנים ",
-      text: ["ניתן לראות שנותנים טיפול בנפח איכותי יותר לאורך השנים"],
-      graphUrl: [three],
+      graphUrl: [three,two],
     },
     {
       headline: "גישה וסקולרית",
@@ -95,14 +90,14 @@ function PopOutBloodProducts({
   return (
     <div className="blood-product">
       <div className="blood-product-headline">{arrInfo[indexBtn].headline}</div>
-      <div className={`container-blood-product-info ${indexBtn === 3 ? "show-column" : ""}`}>
+      <div className={`container-blood-product-info ${indexBtn === 2 ? "show-column" : ""}`}>
         {/* close button */}
         {showCloseBtn && (
           <p
             className="close-pop-out-btn to-right-arrow"
             onClick={() => {
               setinPopOutBloodProducts(false);
-              if (indexBtn < 4 && counterDoneBtns === indexBtn) {
+              if (indexBtn < 3 && counterDoneBtns === indexBtn) {
                 setCounterDoneBtns((prev) => prev + 1);
               }
             }}
@@ -113,27 +108,33 @@ function PopOutBloodProducts({
 
         {indexBtn !== 3 && (
           <>
-            {(indexBtn === 0 || indexBtn === 2) && (
+            {(indexBtn !== 2) && (
               <img
                 src={arrow}
                 alt="arrow"
                 className={`clock-arrow pop-blood-prod-arrow back-pop-arrow ${indexInfo === 0 ? "hide" : ""} to-right-arrow`}
                 onClick={() => setIndexInfo(indexInfo - 1)}
               />
-            )}
+             )} 
 
             <div>
               <p>{arrInfo[indexBtn].text[indexInfo]}</p>
               {indexBtn === 0 && indexInfo === 1 ? (
-                <video src={two} autoPlay playsInline style={{ objectFit: "cover" }} className="graph-blood-prod" />
-              ) : (
-                <img
-                  src={arrInfo[indexBtn].graphUrl[indexInfo]}
-                  alt="img"
-                  className={`graph-blood-prod ${indexBtn === 2 && indexInfo === 1 ? "fix-margin-graph" : ""}`}
-                />
-              )}
-              {indexBtn === 2 && (
+  <video
+    src={two}
+    autoPlay
+    playsInline
+    style={{ objectFit: "cover" }}
+    className="graph-blood-prod"
+  />
+) : indexBtn !== 2 ? (
+  <img
+    src={arrInfo[indexBtn].graphUrl[indexInfo]}
+    alt="img"
+    className={`graph-blood-prod ${indexBtn === 1 && indexInfo === 1 ? "fix-margin-graph" : ""}`}
+  />
+) : null}
+              {indexBtn === 1 && (
                 <div className="second-graph">
                   {vasculaApproach[indexInfo].map((text, i) => (
                     <p className="fix-added-to-graph" key={i}>
@@ -142,23 +143,23 @@ function PopOutBloodProducts({
                   ))}
                 </div>
               )}
-              {indexBtn === 2 && indexInfo === 1 && (
+              {indexBtn === 1 && indexInfo === 1 && (
                 <p>זמן חציוני עד הזלפת מוצר דם מרגע הגעת צוות אר”ן היה 20 דקות</p>
               )}
             </div>
 
-            {(indexBtn === 0 || indexBtn === 2) && (
+            {(indexBtn !== 2) && (
               <img
                 src={arrow}
                 alt="arrow"
                 className={`clock-arrow pop-blood-prod-arrow next-pop-arrow ${indexInfo === 1 ? "hide" : ""}`}
                 onClick={() => setIndexInfo(indexInfo + 1)}
               />
-            )}
+            )} 
           </>
         )}
 
-        {indexBtn === 3 && (
+        {indexBtn === 2 && (
           <>
             <img src={clickInstruct} alt="instruct" className="instruct-click" />
             {arrDrops.map((d, index) => (

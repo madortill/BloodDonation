@@ -107,6 +107,8 @@
 .row-drop-info {
     display: flex;
     align-items: center;
+    /* margin-bottom: 2rem;
+    margin-top: -2rem; */
 }
 
 .white-bg {
