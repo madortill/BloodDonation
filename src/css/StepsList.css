@@ -89,3 +89,10 @@
     position: relative; /* anchor for .number */
     display: inline-block;
   }
+
+  @media screen and (max-width: 600px) {
+    .icon {
+        left: -0.2rem;
+      
+    }
+  }

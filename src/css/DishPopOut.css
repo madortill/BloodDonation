@@ -25,7 +25,7 @@
 }
 
 .second-table {
-    width: 23rem;
+    width: 20rem;
 }
 
 .prev-arrow {
@@ -105,13 +105,13 @@
         width: 100%;
     }
     .second-table {
-        /* width: 23rem; */
-        height: 13rem;
+        width: 18rem;
+        /* height: 13rem; */
     }
     
 
     .part-two {
-        height: 35rem;
+        height: 34rem;
     }
 
 
