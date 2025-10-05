@@ -8,8 +8,9 @@
 
 .intro-container {
     background-color: white;
-    height: 31rem;
-    width: 21rem;
+    height: 35rem;
+    width: 23rem;
+    font-size: 1.2rem;
     border-radius: 1.5rem;
     box-shadow: -4px 4px 0.7rem rgba(0, 0, 0, 0.1); /* x-offset y-offset blur color */
 }

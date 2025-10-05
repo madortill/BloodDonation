@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 function Intro() {
   const infoArr = [
+    "רק רופאים יוסמכו למתן דם, פרמדיקים יוחרגו",
+    'בנסיבות ספציפיות על ידי רע"ן רפמ"צ',
+    
     "כדי להיות מוסמכים למתן דם מלא,",
     "מטפלים בכירים צריכים לעמוד",
     "במספר קריטריונים:",
@@ -37,7 +40,7 @@ function Intro() {
                 "--delay": `${index * 1.5}s`,
                 "--width": `${text.length}ch`,
               }}
-              className={index === 3 || index === 6 ? "sub-title" : ""}
+              className={index === 5 || index === 8 ? "sub-title" : ""}
             >
               {text}
             </p>
