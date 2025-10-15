@@ -1,11 +1,10 @@
 .the-info {
-    display: flex
-    ;
-        margin-right: 1rem;
-        width: 14rem;
-        text-align: right;
-        color: white;
-        direction: rtl;
+    display: flex;
+    margin-right: 1rem;
+    width: 14rem;
+    text-align: right;
+    color: white;
+    direction: rtl;
 }
 
 .header {
@@ -16,7 +15,7 @@
 
 .bubble {
     /* background-color: #D81F2B; */
-  background-color: #EE2644;
+    background-color: #EE2644;
     border-radius: 1rem;
     width: 25rem;
     position: relative;
@@ -26,7 +25,8 @@
     align-items: center;
     /* justify-content: flex-end; */
     direction: rtl;
-    overflow: hidden;   /* 🔑 this makes children stay inside */
+    overflow: hidden;
+    /* 🔑 this makes children stay inside */
     transition: all 0.2s;
     filter: drop-shadow(0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.1));
 
@@ -39,7 +39,7 @@
 .fix-pos {
     position: absolute;
     top: 0rem;
-    left: 0rem;
+    left: -0.3rem;
     height: 105%;
 }
 
@@ -47,7 +47,7 @@
     z-index: 1;
     position: absolute;
     left: 0rem;
-  
+
 }
 
 .icon1 {
@@ -57,8 +57,8 @@
 .icon2 {
     z-index: 1;
     position: absolute;
-    left: 0rem;
-    width: 6.4rem;
+    left: 0.5rem;
+        width: 6.4rem;
     top: -0.5rem;
 }
 
@@ -71,6 +71,7 @@
     width: 5.4rem;
     transform: scaleX(-1);
     top: -3.5rem;
+    left: 0rem;
 }
 
 .number {
@@ -86,13 +87,22 @@
 }
 
 .bubble-wrapper {
-    position: relative; /* anchor for .number */
+    position: relative;
+    /* anchor for .number */
     display: inline-block;
-  }
+}
 
-  @media screen and (max-width: 600px) {
+.fix-bottom-margin {
+    margin-bottom: 0.5rem;
+}
+
+.fix-info-appearence {
+    width: 15rem;
+}
+
+@media screen and (max-width: 600px) {
     .icon {
         left: -0.2rem;
-      
+
     }
-  }
+}
