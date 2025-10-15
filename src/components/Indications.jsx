@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../css/Indications.css";
 import arrow from "../assets/images/arrow.png";
-import protocolBtn from "../assets/images/protocolBtn.png";
+import protocolBtnNotActive from "../assets/images/protocol/not-active.png";
+import protocolBtnActive from "../assets/images/protocol/active.png";
 import Protocol from "./Protocol";
 
 const info = [
@@ -70,9 +71,9 @@ function Indications({ setShowNextBtn, setFinishIndictions }) {
         <p>{info[2]}</p>
       </div>
       <img
-        src={protocolBtn}
+        src={show ? protocolBtnActive : protocolBtnNotActive}
         alt="protocol"
-        className="protocol-btn"
+        className={`protocol-btn ${show ? "active-protocol-btn" : ""}`}
         onClick={() => !showProtocol && setShowProtocol(true)}
       />
       {showProtocol && <Protocol setShowProtocol={setShowProtocol} />}

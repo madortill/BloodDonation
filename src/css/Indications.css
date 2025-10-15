@@ -168,7 +168,24 @@ margin-bottom: -0.5rem;
     bottom: 0rem;
     left: 0rem;
     width: 16rem;
+    
+}
+
+.active-protocol-btn {
+    animation: pulse 1.5s ease-in-out infinite;
     cursor: pointer;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        width: 16rem;
+    }
+
+    50% {
+        width: 18rem;
+    }
 }
 
 .protocol-container-img {
@@ -190,6 +207,7 @@ margin-bottom: -0.5rem;
 height: 100%;
 border-radius: 1rem;
 }
+
 
 @media screen and (max-width: 600px) {
 
