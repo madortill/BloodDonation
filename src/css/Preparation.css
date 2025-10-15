@@ -31,7 +31,9 @@
     justify-content: center;
 }
 
-
+.space-bottom-preparation {
+    margin-bottom: 0.7rem;
+}
 
 @media screen and (max-width: 600px) {
     .preparation-pop-out {

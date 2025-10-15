@@ -6,7 +6,7 @@ import card3 from "../assets/images/flipCard/three.png";
 
 import FlipCard from "./FlipCard";
 
-function ResponsesTypes() {
+function ResponsesTypes({numPart}) {
   const cards = [
     {
       img: card1,
@@ -28,7 +28,9 @@ function ResponsesTypes() {
     <div>
       <p className="bold header-responses">לאחר עצירת מנת הדם ומעבר לטיפול בפלזמה, יש להוסיף טיפול בהתאם לסוג התגובה</p>
       <div className="types-container expired">
-        {cards.map((c, i) => (
+        {numPart === 1 &&
+       <>
+       {cards.map((c, i) => (
           <FlipCard
             key={i}
             imgUrl={c.img}
@@ -37,6 +39,17 @@ function ResponsesTypes() {
             isBloodBag={false}
           />
         ))}
+        </> 
+        }
+        {numPart === 0 &&
+       <>
+       {cards.map((c, i) => (
+          <img src={c.img} alt={i} className="img-type"/>
+     
+        ))}
+        </> 
+        }
+        
       </div>
     </div>
   );

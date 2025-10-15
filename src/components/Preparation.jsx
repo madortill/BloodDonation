@@ -14,7 +14,7 @@ function Preparation({ numPartPreparation, setShowQuestion }) {
 
       {(numPartPreparation === 1 || numPartPreparation === 2) && (
         <>
-          <p className="space-from-bottom">
+          <p className="space-bottom-preparation">
             השלבים במתן המנה (לאחר הערכת הפצוע וקבלת אישור):
           </p>
           <StepsList arr={data.stepsArr.second} />

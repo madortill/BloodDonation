@@ -50,7 +50,7 @@ function InfoScreen() {
   //reactions
   const [numPartReactions, setNumPartReactions] = useState(0);
   const [finishedResponseSus, setFinishedResponseSus] = useState(false);
-
+  const [numPartResponsesTypes, setNumPartResponsesTypes] = useState(0);
   //lessons
   const [numPartLesson, setNumPartLesson] = useState(0);
   const [scrolledToBottom, setScrolledToBottom] = useState(false);
@@ -153,9 +153,12 @@ function InfoScreen() {
         }
         return;
       case 4:
-        if (numPartReactions === 0) {
+        if (numPartReactions === 0 || numPartReactions === 1) {
           setNumPartReactions((prev) => prev + 1);
-        } else if (numPartReactions === 1 && !showQuestion) {
+          if(numPartReactions === 0) {
+            setNumPartResponsesTypes((prev) => prev + 1);
+          }
+        } else if (numPartReactions === 2 && !showQuestion) {
           setShowQuestion(true);
         } else {
           doneQues();
@@ -255,8 +258,11 @@ function InfoScreen() {
         if (numPartReactions === 0) {
           setSubjNum(subjNum - 1);
           backToQues();
-        } else if (numPartReactions === 1 && !showQuestion) {
+        } else if ((numPartReactions === 2 && !showQuestion) || numPartReactions === 1) {
           setNumPartReactions((prev) => prev - 1);
+          if(numPartReactions === 1) {
+            setNumPartResponsesTypes((prev) => prev - 1);
+          }
         } else {
           setShowQuestion(false);
         }
@@ -309,9 +315,9 @@ function InfoScreen() {
         setShowNextBtn(false);
       }
     } else if (subjNum === 3) {
-      if(!finishedResponseSus) {
-        setShowNextBtn(false);
-      }
+      // if(!finishedResponseSus) {
+      //   setShowNextBtn(false);
+      // }
       setSubjNum(4);
     } else if (subjNum === 4) {
       setSubjNum(5);
@@ -375,7 +381,7 @@ function InfoScreen() {
         {!showQuestion && subjNum === 4 && (
           <>
             <p className="header-text">{data.titles[subjNum][0]}</p>
-            <Reactions numPartReactions={numPartReactions} setShowNextBtn={setShowNextBtn} finishedResponseSus={finishedResponseSus} setFinishedResponseSus={setFinishedResponseSus}/>
+            <Reactions numPartReactions={numPartReactions} setShowNextBtn={setShowNextBtn} finishedResponseSus={finishedResponseSus} setFinishedResponseSus={setFinishedResponseSus} numPartResponsesTypes={numPartResponsesTypes}/>
           </>
         )}
         {!showQuestion && subjNum === 5 && (

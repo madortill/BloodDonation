@@ -1,14 +1,19 @@
 .types-container {
-    display: flex
-;
+    display: flex;
     align-items: center;
     justify-content: center;
-} 
+}
 
 .header-responses {
     font-size: 1.6rem;
 }
 
+.img-type {
+    border-radius: 1rem;
+    width: 15rem;
+    height: 15rem;
+    margin: 1rem;
+}
 
 @media screen and (max-width: 600px) {
     .expired {
