@@ -25,6 +25,7 @@ function Indications({ setShowNextBtn, setFinishIndictions, showActiveProtocolBt
           <div className="more-info-bubble">
             <hr className="line" />
             האם הפצוע בהלם עמוק?
+            <p className="mini-asterisk">*נשאף לבצע מדידת לחץ דם לפני העלאת הפצוע לכלי הפינוי</p>
             <p className="red-hidden-bubble">
               לחץ דם סיסטולי נמוך מ-90 מ”מ כספית
             </p>

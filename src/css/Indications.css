@@ -154,7 +154,14 @@ margin-bottom: -0.5rem;
     border: none;
     border-top: 0.2rem solid black;
     /* Adjust the thickness of the line */
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.mini-asterisk {
+    /* font-weight: bold; */
+    font-size: 1rem;
+    margin: 0rem;
+    margin-bottom: -1rem;
 }
 
 .indications-arrow{
