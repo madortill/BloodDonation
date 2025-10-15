@@ -172,11 +172,11 @@ margin-bottom: -0.5rem;
 }
 
 .active-protocol-btn {
-    animation: pulse 1.5s ease-in-out infinite;
+    animation: growBtn 1.5s ease-in-out infinite;
     cursor: pointer;
 }
 
-@keyframes pulse {
+@keyframes growBtn {
 
     0%,
     100% {

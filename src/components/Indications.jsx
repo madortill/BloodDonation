@@ -11,7 +11,7 @@ const info = [
   "מתן הדם יתבצע על ידי מטפל שהוסמך לכך. לא נמשיך בפעולה לאחר מעבר הפצוע ללבנת פינוי בה אין איש צוות שהוסמך למתן דם.",
 ];
 
-function Indications({ setShowNextBtn, setFinishIndictions }) {
+function Indications({ setShowNextBtn, setFinishIndictions, showActiveProtocolBtn, setShowActiveProtocolBtn }) {
   const [show, setShow] = useState(false);
   const [textBtn, setTextBtn] = useState("?");
   const [showProtocol, setShowProtocol] = useState(false);
@@ -55,7 +55,7 @@ function Indications({ setShowNextBtn, setFinishIndictions }) {
                 onClick={() => {
                   show
                     ? (setShow(false), setTextBtn("?"))
-                    : (setShow(true), setShowNextBtn(true), setFinishIndictions(true), setTextBtn("X"));
+                    : (setShow(true), setShowActiveProtocolBtn(true), setTextBtn("X"));
                 }}
               >
                 <p className={`question-mark ${!show ? "jump-animation" : ""}`}>
@@ -71,12 +71,12 @@ function Indications({ setShowNextBtn, setFinishIndictions }) {
         <p>{info[2]}</p>
       </div>
       <img
-        src={show ? protocolBtnActive : protocolBtnNotActive}
+        src={showActiveProtocolBtn ? protocolBtnActive : protocolBtnNotActive}
         alt="protocol"
-        className={`protocol-btn ${show ? "active-protocol-btn" : ""}`}
-        onClick={() => !showProtocol && setShowProtocol(true)}
+        className={`protocol-btn ${showActiveProtocolBtn ? "active-protocol-btn" : ""}`}
+        onClick={() => showActiveProtocolBtn && !showProtocol && setShowProtocol(true)}
       />
-      {showProtocol && <Protocol setShowProtocol={setShowProtocol} />}
+      {showProtocol && <Protocol setShowProtocol={setShowProtocol} setShowNextBtn={setShowNextBtn} setFinishIndictions={setFinishIndictions}/>}
     </div>
   );
 }

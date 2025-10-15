@@ -30,6 +30,7 @@ function InfoScreen() {
   const [finishMaskana, setFinishMaskana] = useState(false);
   //about indictions
   const [finishIndictions, setFinishIndictions] = useState(false);
+  const [showActiveProtocolBtn, setShowActiveProtocolBtn] = useState(false);
   //about questions
   const [numQues, setNumQues] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
@@ -358,6 +359,8 @@ function InfoScreen() {
             <Indications
               setShowNextBtn={setShowNextBtn}
               setFinishIndictions={setFinishIndictions}
+              showActiveProtocolBtn={showActiveProtocolBtn}
+              setShowActiveProtocolBtn={setShowActiveProtocolBtn}
             />
           </>
         )}

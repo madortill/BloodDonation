@@ -26,7 +26,9 @@ function ResponsesTypes({numPart}) {
   ];
   return (
     <div>
-      <p className="bold header-responses">לאחר עצירת מנת הדם ומעבר לטיפול בפלזמה, יש להוסיף טיפול בהתאם לסוג התגובה</p>
+      {numPart === 0 && 
+      <p className="bold header-responses">לאחר עצירת מנת הדם ומעבר לטיפול בפלזמה, יש להוסיף טיפול בהתאם לסוג התגובה</p>      
+      }
       <div className="types-container expired">
         {numPart === 1 &&
        <>
