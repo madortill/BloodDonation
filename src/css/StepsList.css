@@ -6,6 +6,7 @@
     color: white;
     direction: rtl;
     line-height: 1.2;
+    font-size: 1.2rem;
 }
 
 .header {
@@ -59,8 +60,10 @@
     z-index: 1;
     position: absolute;
     left: 0.5rem;
-        width: 6.4rem;
-    top: -0.5rem;
+        /* width: 6.4rem;
+    top: -0.5rem; */
+    width: 5.4rem;
+    top: 0rem;
 }
 
 .the-four {
@@ -95,6 +98,7 @@
 
 .fix-bottom-margin {
     margin-bottom: 0.5rem;
+    height: 3.3rem;
 }
 
 .fix-info-appearence {

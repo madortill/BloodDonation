@@ -31,6 +31,7 @@ function InfoScreen() {
   //about indictions
   const [finishIndictions, setFinishIndictions] = useState(false);
   const [showActiveProtocolBtn, setShowActiveProtocolBtn] = useState(false);
+  const [partInIndictions, setPartInIndictions] = useState(0);
   //about questions
   const [numQues, setNumQues] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
@@ -122,7 +123,11 @@ function InfoScreen() {
 
       case 1:
         if (!showQuestion) {
-          setShowQuestion(true);
+          if(partInIndictions === 0) {
+            setPartInIndictions((prev)=> prev + 1);
+          } else {
+            setShowQuestion(true);
+          }
         } else {
           doneQues();
           if (!doneReading) {
@@ -220,9 +225,14 @@ function InfoScreen() {
         return;
       case 1:
         if (!showQuestion) {
-          setSubjNum(0);
-          setTitleNum(2);
-          setShowNextBtn(true);
+          if(partInIndictions === 0) {
+            setSubjNum(0);
+            setTitleNum(2);
+            setShowNextBtn(true);
+          } else {
+            setPartInIndictions((prev)=> prev-1);
+          }
+          
         } else {
           setShowQuestion(false);
         }
@@ -361,6 +371,7 @@ function InfoScreen() {
               setFinishIndictions={setFinishIndictions}
               showActiveProtocolBtn={showActiveProtocolBtn}
               setShowActiveProtocolBtn={setShowActiveProtocolBtn}
+              partInIndictions={partInIndictions}
             />
           </>
         )}

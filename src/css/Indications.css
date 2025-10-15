@@ -215,6 +215,24 @@ height: 100%;
 border-radius: 1rem;
 }
 
+.priority-order {
+    height: 25rem;
+    filter: drop-shadow(-4px 4px 0.7rem rgba(0, 0, 0, 0.1));
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px); /* float up */
+  }
+  100% {
+    transform: translateY(0px);   /* back to original */
+  }
+}
+
 
 @media screen and (max-width: 600px) {
 

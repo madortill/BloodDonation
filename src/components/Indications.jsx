@@ -3,6 +3,7 @@ import "../css/Indications.css";
 import arrow from "../assets/images/arrow.png";
 import protocolBtnNotActive from "../assets/images/protocol/not-active.png";
 import protocolBtnActive from "../assets/images/protocol/active.png";
+import priorityOrder from "../assets/images/priorityOrder.png";
 import Protocol from "./Protocol";
 
 const info = [
@@ -11,73 +12,112 @@ const info = [
   "מתן הדם יתבצע על ידי מטפל שהוסמך לכך. לא נמשיך בפעולה לאחר מעבר הפצוע ללבנת פינוי בה אין איש צוות שהוסמך למתן דם.",
 ];
 
-function Indications({ setShowNextBtn, setFinishIndictions, showActiveProtocolBtn, setShowActiveProtocolBtn }) {
+function Indications({
+  setShowNextBtn,
+  setFinishIndictions,
+  showActiveProtocolBtn,
+  setShowActiveProtocolBtn,
+  partInIndictions,
+}) {
   const [show, setShow] = useState(false);
   const [textBtn, setTextBtn] = useState("?");
   const [showProtocol, setShowProtocol] = useState(false);
 
   return (
     <div className="indications">
-      <p className="title-indications">האינדקציות העיקריות:</p>
+      {partInIndictions === 0 && (
+        <>
+          <p className="title-indications">האינדקציות העיקריות:</p>
 
-      <div className="bubbles-container">
-        {show && (
-          <div className="more-info-bubble">
-            <hr className="line" />
-            האם הפצוע בהלם עמוק?
-            <p className="mini-asterisk">*נשאף לבצע מדידת לחץ דם לפני העלאת הפצוע לכלי הפינוי</p>
-            <p className="red-hidden-bubble">
-              לחץ דם סיסטולי נמוך מ-90 מ”מ כספית
-            </p>
-            <div className="arrow-container">
-              <img src={arrow} alt="arrow" className="indications-arrow" />{" "}
-              <p className="arrow-text">אם לא ניתן למדוד</p>
-            </div>
-            <div className="red-hidden-bubble">
-              לחץ דם שאינו ניתן למדידה
-              <div className="mini-hidden-text-container">
-                <p>1. היעדר דופק רדיאלי</p>
-                <p>או</p>
-                <p>2. שינוי ברמת ההכרה (שאינו על רקע חבלת ראש או תרופות)</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {info.slice(0, 2).map((text, index) => (
-          <div key={index} className="bubble-indications">
-            <p className="text-indication">
-              {text}
-              {index === 0 && <span className="bold bold-inline">הלם עמוק</span>}
-            </p>
-            {index === 0 && (
-              <div
-                className="more-info-btn"
-                onClick={() => {
-                  show
-                    ? (setShow(false), setTextBtn("?"))
-                    : (setShow(true), setShowActiveProtocolBtn(true), setTextBtn("X"));
-                }}
-              >
-                <p className={`question-mark ${!show ? "jump-animation" : ""}`}>
-                  {textBtn}
+          <div className="bubbles-container">
+            {show && (
+              <div className="more-info-bubble">
+                <hr className="line" />
+                האם הפצוע בהלם עמוק?
+                <p className="mini-asterisk">
+                  *נשאף לבצע מדידת לחץ דם לפני העלאת הפצוע לכלי הפינוי
                 </p>
+                <p className="red-hidden-bubble">
+                  לחץ דם סיסטולי נמוך מ-90 מ”מ כספית
+                </p>
+                <div className="arrow-container">
+                  <img src={arrow} alt="arrow" className="indications-arrow" />{" "}
+                  <p className="arrow-text">אם לא ניתן למדוד</p>
+                </div>
+                <div className="red-hidden-bubble">
+                  לחץ דם שאינו ניתן למדידה
+                  <div className="mini-hidden-text-container">
+                    <p>1. היעדר דופק רדיאלי</p>
+                    <p>או</p>
+                    <p>2. שינוי ברמת ההכרה (שאינו על רקע חבלת ראש או תרופות)</p>
+                  </div>
+                </div>
               </div>
             )}
+
+            {info.slice(0, 2).map((text, index) => (
+              <div key={index} className="bubble-indications">
+                <p className="text-indication">
+                  {text}
+                  {index === 0 && (
+                    <span className="bold bold-inline">הלם עמוק</span>
+                  )}
+                </p>
+                {index === 0 && (
+                  <div
+                    className="more-info-btn"
+                    onClick={() => {
+                      show
+                        ? (setShow(false), setTextBtn("?"))
+                        : (setShow(true),
+                          setShowActiveProtocolBtn(true),
+                          setTextBtn("X"));
+                    }}
+                  >
+                    <p
+                      className={`question-mark ${
+                        !show ? "jump-animation" : ""
+                      }`}
+                    >
+                      {textBtn}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <p className="title-indications">בכל מקרה של מתן דם:</p>
-      <div className="bubble-indications">
-        <p>{info[2]}</p>
-      </div>
-      <img
-        src={showActiveProtocolBtn ? protocolBtnActive : protocolBtnNotActive}
-        alt="protocol"
-        className={`protocol-btn ${showActiveProtocolBtn ? "active-protocol-btn" : ""}`}
-        onClick={() => showActiveProtocolBtn && !showProtocol && setShowProtocol(true)}
-      />
-      {showProtocol && <Protocol setShowProtocol={setShowProtocol} setShowNextBtn={setShowNextBtn} setFinishIndictions={setFinishIndictions}/>}
+          <p className="title-indications">בכל מקרה של מתן דם:</p>
+          <div className="bubble-indications">
+            <p>{info[2]}</p>
+          </div>
+          <img
+            src={
+              showActiveProtocolBtn ? protocolBtnActive : protocolBtnNotActive
+            }
+            alt="protocol"
+            className={`protocol-btn ${
+              showActiveProtocolBtn ? "active-protocol-btn" : ""
+            }`}
+            onClick={() =>
+              showActiveProtocolBtn && !showProtocol && setShowProtocol(true)
+            }
+          />
+          {showProtocol && (
+            <Protocol
+              setShowProtocol={setShowProtocol}
+              setShowNextBtn={setShowNextBtn}
+              setFinishIndictions={setFinishIndictions}
+            />
+          )}
+        </>
+      )}
+       {partInIndictions === 1 && (
+        <>
+         <p>סדר העדיפות של מוצרי הדם</p>
+         <img src={priorityOrder} alt="priority-order" className="priority-order"/>
+        </>
+       
+       )}
     </div>
   );
 }
