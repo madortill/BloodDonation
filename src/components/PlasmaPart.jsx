@@ -48,7 +48,7 @@ function PlasmaPart({ numPartInPlasma, setNumPartInPlasma, setFinishedPlasmaExpl
           alt="test-tube"
           className="test-tube"
         />
-        {numPartInPlasma === 0 && <p>תלחצו</p>}
+        {numPartInPlasma === 0 && <p>לחצו</p>}
       </div>
       {numPartInPlasma === 5 && (
         <img src={graph} alt="graph" className="graph-plasma" />
