@@ -4,24 +4,7 @@ import PopOutBloodProducts from "./PopOutBloodProducts";
 
 
 function BloodProducts({setShowNextBtn, inPopOutBloodProducts, setinPopOutBloodProducts, counterDoneBtns, setCounterDoneBtns}) {
-  // const btns = [
-  //   {
-  //     text: "דם מלא בצה”ל",
-  //     color: "#D81F2B",
-  //   },
-  //   {
-  //     text: "שימוש במוצרי הדם",
-  //     color: "#E3404B",
-  //   },
-  //   {
-  //     text: "גישה וסקולרית",
-  //     color: "#F05C66",
-  //   },
-  //   {
-  //     text: "החזר נפח במלחמה",
-  //     color: "#F6868D",
-  //   },
-  // ];
+
   const btns = [
     {
       text: 'שימוש במוצרי דם בצה"ל',

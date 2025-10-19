@@ -7,6 +7,7 @@ import drop2 from "../assets/images/drops/two.svg";
 import DishPopOut from "./DishPopOut";
 import Definition from "./Definition";
 import BloodEqualsTime from "./BloodEqualsTime";
+import PlasmaPart from "./PlasmaPart";
 
 function Introduction({
   indexInfo,
@@ -15,8 +16,11 @@ function Introduction({
   setShowNextBtn,
   numText,
   setFinishDefinition,
-  finishDefinition, 
-  setFinishMaskana
+  finishDefinition,
+  setFinishMaskana,
+  numPartInPlasma,
+  setNumPartInPlasma,
+  setFinishedPlasmaExplain
 }) {
   const text = [
     " :פעולות מצילות חיים מרכזיות שנבצע לפצוע המדמם",
@@ -25,22 +29,67 @@ function Introduction({
     ":מסקנת החוקרים",
   ];
 
-
   // about definition
-    //varible if clicked on red circle
-    const [showAdvantages, setShowAdvantages] = useState(false);
+  //varible if clicked on red circle
+  const [showAdvantages, setShowAdvantages] = useState(false);
 
   useEffect(() => {
     if (showAdvantages) {
-      setFinishDefinition(true); 
+      setFinishDefinition(true);
     }
   }, [showAdvantages]);
 
   return (
     <div className="introduction">
-      {indexInfo !== 1 && <p className="space-from-bottom">{text[numText]}</p>}
+      {indexInfo !== 1 && indexInfo !== 0 && (
+        <p className="space-from-bottom">{text[numText]}</p>
+      )}
 
-      {indexInfo === 0 && <StepsList arr={data.stepsArr.first} />}
+      {indexInfo === -1 && <StepsList arr={data.stepsArr.first} />}
+      {indexInfo === 0 && (
+        <PlasmaPart
+          numPartInPlasma={numPartInPlasma}
+          setNumPartInPlasma={setNumPartInPlasma}
+          setFinishedPlasmaExplain={setFinishedPlasmaExplain}
+          setShowNextBtn={setShowNextBtn}
+        />
+      )}
+      {indexInfo === 1 && !showDish && (
+        <>
+          <div>
+            <img src={drop1} alt="drop" className="drop" />
+            <img src={drop2} alt="drop" className="drop" />
+          </div>
+
+          <div className="dish-btn" onClick={() => setShowDish(true)}>
+            הרכב המנה
+          </div>
+        </>
+      )}
+
+      {indexInfo === 1 && showDish && (
+        <DishPopOut setShowDish={setShowDish} setShowNextBtn={setShowNextBtn} />
+      )}
+
+      {indexInfo === 2 && (
+        <Definition
+          showAdvantages={showAdvantages}
+          setShowAdvantages={setShowAdvantages}
+          setShowNextBtn={setShowNextBtn}
+          setFinishDefinition={setFinishDefinition}
+          finishDefinition={finishDefinition}
+        />
+      )}
+      {indexInfo === 3 && (
+        <BloodEqualsTime
+          indexSubTitle={numText}
+          setShowNextBtn={setShowNextBtn}
+          setFinishMaskana={setFinishMaskana}
+        />
+      )}
+
+      {/* {indexInfo === 0 && <StepsList arr={data.stepsArr.first} />}
+      
       {indexInfo === 1 && !showDish && (
         <>
           <div>
@@ -59,9 +108,7 @@ function Introduction({
       )}
 
       {indexInfo === 2 && <Definition showAdvantages={showAdvantages} setShowAdvantages={setShowAdvantages} setShowNextBtn={setShowNextBtn} setFinishDefinition={setFinishDefinition} finishDefinition={finishDefinition}/>}
-    {indexInfo === 3 &&<BloodEqualsTime indexSubTitle={numText} setShowNextBtn={setShowNextBtn} setFinishMaskana={setFinishMaskana}/> }
-
-    
+    {indexInfo === 3 &&<BloodEqualsTime indexSubTitle={numText} setShowNextBtn={setShowNextBtn} setFinishMaskana={setFinishMaskana}/> } */}
     </div>
   );
 }

@@ -5,8 +5,14 @@ import video from "../assets/images/video.png";
 import StepsList from "./StepsList";
 import PreparationPopOut from "./PreparationPopOut";
 
-function Preparation({ setShowNextBtn, numPartPreparation, setShowQuestion,videoEnded, setVideoEnded }) {
-
+function Preparation({
+  setShowNextBtn,
+  numPartPreparation,
+  showPOPreparation,
+  videoEnded,
+  setVideoEnded,
+  setShowQuestion
+}) {
   return (
     <div className="preparation">
       {numPartPreparation === 0 && (
@@ -22,8 +28,13 @@ function Preparation({ setShowNextBtn, numPartPreparation, setShowQuestion,video
         </>
       )}
 
-      {numPartPreparation === 2  && (
-        <PreparationPopOut setShowQuestion={setShowQuestion} videoEnded={videoEnded} setVideoEnded={setVideoEnded} setShowNextBtn={setShowNextBtn}/>
+      {showPOPreparation && (
+        <PreparationPopOut
+          videoEnded={videoEnded}
+          setVideoEnded={setVideoEnded}
+          setShowNextBtn={setShowNextBtn}
+          setShowQuestion={setShowQuestion}
+        />
       )}
     </div>
   );

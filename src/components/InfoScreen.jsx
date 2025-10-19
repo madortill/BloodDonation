@@ -18,12 +18,15 @@ function InfoScreen() {
   //about introduction
   const [subjNum, setSubjNum] = useState(0);
   const [titleNum, setTitleNum] = useState(0);
-  const [indexInfo, setIndexInfo] = useState(0);
+  const [indexInfo, setIndexInfo] = useState(-1);
   const [showDish, setShowDish] = useState(false);
   const [wasDishOpened, setWasDishOpened] = useState(false);
   const [showNextBtn, setShowNextBtn] = useState(true);
   const [showPrevBtn, setShowPrevBtn] = useState(false);
   const [numText, setNumText] = useState(0);
+  const [numPartInPlasma, setNumPartInPlasma] = useState(0);
+  const [finishedPlasmaExplain, setFinishedPlasmaExplain] = useState(false);
+
   //about definition
   const [finishDefinition, setFinishDefinition] = useState(false);
   //about blood=time
@@ -50,6 +53,7 @@ function InfoScreen() {
   //prepration
   const [numPartPreparation, setNumPartPreparation] = useState(0);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [showPOPreparation, setShowPOPreparation] = useState(false);
 
   //reactions
   const [numPartReactions, setNumPartReactions] = useState(0);
@@ -59,12 +63,9 @@ function InfoScreen() {
   const [numPartLesson, setNumPartLesson] = useState(0);
   const [scrolledToBottom, setScrolledToBottom] = useState(false);
   //bloodProducts
-  
+
   const [counterDoneBtns, setCounterDoneBtns] = useState(0);
   const [inPopOutBloodProducts, setinPopOutBloodProducts] = useState(false);
-
-  
-
 
   useEffect(() => {
     if (showDish) {
@@ -84,10 +85,18 @@ function InfoScreen() {
     switch (subjNum) {
       case 0:
         switch (indexInfo) {
-          case 0:
+          case -1:
             setTitleNum(titleNum + 1);
             setIndexInfo(indexInfo + 1);
             setShowPrevBtn(true);
+            if (!finishedPlasmaExplain) {
+              setShowNextBtn(false);
+            }
+            return;
+          case 0:
+            setTitleNum(titleNum + 1);
+            setIndexInfo(indexInfo + 1);
+            // setShowPrevBtn(true);
             if (!wasDishOpened) {
               setShowNextBtn(false);
             }
@@ -109,8 +118,8 @@ function InfoScreen() {
           case 3:
             //if next from graphs
             if (numText === 2) {
-              setNumText((prev) => prev + 1); 
-              if(!finishMaskana) {
+              setNumText((prev) => prev + 1);
+              if (!finishMaskana) {
                 setShowNextBtn(false);
               }
             } else {
@@ -125,8 +134,8 @@ function InfoScreen() {
 
       case 1:
         if (!showQuestion) {
-          if(partInIndictions === 0) {
-            setPartInIndictions((prev)=> prev + 1);
+          if (partInIndictions === 0) {
+            setPartInIndictions((prev) => prev + 1);
           } else {
             setShowQuestion(true);
           }
@@ -152,14 +161,14 @@ function InfoScreen() {
         }
         return;
       case 3:
-        if (numPartPreparation === 0 || numPartPreparation === 1) {
+        if (numPartPreparation === 0) {
           setNumPartPreparation((prev) => prev + 1);
-          if(numPartPreparation === 1) {
-            if(!videoEnded) {
-              setShowNextBtn(false);
-            }
+        } else if (numPartPreparation === 1 && !showPOPreparation) {
+          setShowPOPreparation(true);
+          if (!videoEnded) {
+            setShowNextBtn(false);
           }
-        } else if (videoEnded && numPartPreparation === 2) {
+        } else if (videoEnded && numPartPreparation === 1 && !showQuestion) {
           setShowQuestion(true);
         } else if (showQuestion) {
           doneQues();
@@ -168,7 +177,7 @@ function InfoScreen() {
       case 4:
         if (numPartReactions === 0 || numPartReactions === 1) {
           setNumPartReactions((prev) => prev + 1);
-          if(numPartReactions === 0) {
+          if (numPartReactions === 0) {
             setNumPartResponsesTypes((prev) => prev + 1);
           }
         } else if (numPartReactions === 2 && !showQuestion) {
@@ -182,12 +191,12 @@ function InfoScreen() {
           setNumPartLesson((prev) => prev + 1);
         } else {
           setSubjNum(6);
-          if(counterDoneBtns !== 4) {
+          if (counterDoneBtns !== 4) {
             setShowNextBtn(false);
           }
         }
         return;
-        case 6:
+      case 6:
         setShowNextBtn(false);
         setSubjNum(7);
         return;
@@ -200,11 +209,18 @@ function InfoScreen() {
     switch (subjNum) {
       case 0:
         switch (indexInfo) {
-          case 1:
+          case 0:
             setTitleNum(titleNum - 1);
             setIndexInfo(indexInfo - 1);
             setShowPrevBtn(false);
             setShowNextBtn(true);
+            return;
+          case 1:
+            setTitleNum(titleNum - 1);
+            setIndexInfo(indexInfo - 1);
+            // setShowPrevBtn(false);
+            setShowNextBtn(true);
+            
             return;
           case 2:
             if (showQuestion) {
@@ -232,14 +248,13 @@ function InfoScreen() {
         return;
       case 1:
         if (!showQuestion) {
-          if(partInIndictions === 0) {
+          if (partInIndictions === 0) {
             setSubjNum(0);
-            setTitleNum(2);
+            setTitleNum(3);
             setShowNextBtn(true);
           } else {
-            setPartInIndictions((prev)=> prev-1);
+            setPartInIndictions((prev) => prev - 1);
           }
-          
         } else {
           setShowQuestion(false);
         }
@@ -263,16 +278,15 @@ function InfoScreen() {
         if (numPartPreparation === 0) {
           setSubjNum(subjNum - 1);
         } else if (
-          (!showQuestion && numPartPreparation === 2) ||
-          numPartPreparation === 1
-          
+          !showQuestion &&
+          numPartPreparation === 1 &&
+          !showPOPreparation
         ) {
-          if(videoEnded && numPartPreparation === 2) {
-            showNextBtn(true);
-          }
           setNumPartPreparation((prev) => prev - 1);
-        }
-        if (showQuestion) {
+        } else if (!showQuestion && showPOPreparation) {
+          setShowPOPreparation(false);
+          setShowNextBtn(true);
+        } else if (showQuestion) {
           setShowQuestion(false);
         }
         return;
@@ -280,9 +294,12 @@ function InfoScreen() {
         if (numPartReactions === 0) {
           setSubjNum(subjNum - 1);
           backToQues();
-        } else if ((numPartReactions === 2 && !showQuestion) || numPartReactions === 1) {
+        } else if (
+          (numPartReactions === 2 && !showQuestion) ||
+          numPartReactions === 1
+        ) {
           setNumPartReactions((prev) => prev - 1);
-          if(numPartReactions === 1) {
+          if (numPartReactions === 1) {
             setNumPartResponsesTypes((prev) => prev - 1);
           }
         } else {
@@ -298,14 +315,14 @@ function InfoScreen() {
         }
 
         return;
-        case 6:
-          setSubjNum(5);
-          setShowNextBtn(true);
-          return;
-          case 7:
-            setShowNextBtn(true);
-            setSubjNum(6);
-          return;
+      case 6:
+        setSubjNum(5);
+        setShowNextBtn(true);
+        return;
+      case 7:
+        setShowNextBtn(true);
+        setSubjNum(6);
+        return;
       default:
         return "Unknown part";
     }
@@ -327,7 +344,7 @@ function InfoScreen() {
       setNumText((prev) => prev + 1);
     } else if (subjNum === 1) {
       setSubjNum(2);
-      if(!doneReading) {
+      if (!doneReading) {
         setShowNextBtn(false);
       }
       setTitleNum(0);
@@ -343,7 +360,6 @@ function InfoScreen() {
       setSubjNum(4);
     } else if (subjNum === 4) {
       setSubjNum(5);
-      
     }
   }
 
@@ -363,6 +379,9 @@ function InfoScreen() {
               setFinishDefinition={setFinishDefinition}
               finishDefinition={finishDefinition}
               setFinishMaskana={setFinishMaskana}
+              numPartInPlasma={numPartInPlasma}
+              setNumPartInPlasma={setNumPartInPlasma}
+              setFinishedPlasmaExplain={setFinishedPlasmaExplain}
             />
           </>
         )}
@@ -400,30 +419,50 @@ function InfoScreen() {
         {!showQuestion && subjNum === 3 && (
           <>
             <p className="header-text">{data.titles[subjNum][0]}</p>
-            <Preparation setShowNextBtn={setShowNextBtn} numPartPreparation={numPartPreparation} setShowQuestion={setShowQuestion} videoEnded={videoEnded} setVideoEnded={setVideoEnded}/>
+            <Preparation
+              setShowNextBtn={setShowNextBtn}
+              numPartPreparation={numPartPreparation}
+              showPOPreparation={showPOPreparation}
+              videoEnded={videoEnded}
+              setVideoEnded={setVideoEnded}
+              setShowQuestion={setShowQuestion}
+            />
           </>
         )}
         {!showQuestion && subjNum === 4 && (
           <>
             <p className="header-text">{data.titles[subjNum][0]}</p>
-            <Reactions numPartReactions={numPartReactions} setShowNextBtn={setShowNextBtn} finishedResponseSus={finishedResponseSus} setFinishedResponseSus={setFinishedResponseSus} numPartResponsesTypes={numPartResponsesTypes}/>
+            <Reactions
+              numPartReactions={numPartReactions}
+              setShowNextBtn={setShowNextBtn}
+              finishedResponseSus={finishedResponseSus}
+              setFinishedResponseSus={setFinishedResponseSus}
+              numPartResponsesTypes={numPartResponsesTypes}
+            />
           </>
         )}
         {!showQuestion && subjNum === 5 && (
           <>
             <p className="header-text">{data.titles[subjNum][0]}</p>
-            <Lessons numPartLesson={numPartLesson} setScrolledToBottom={setScrolledToBottom}/>
+            <Lessons
+              numPartLesson={numPartLesson}
+              setScrolledToBottom={setScrolledToBottom}
+            />
           </>
         )}
-         {!showQuestion && subjNum === 6 && (
+        {!showQuestion && subjNum === 6 && (
           <>
             <p className="header-text">{data.titles[subjNum][0]}</p>
-            <BloodProducts setShowNextBtn={setShowNextBtn} inPopOutBloodProducts={inPopOutBloodProducts} setinPopOutBloodProducts={setinPopOutBloodProducts} counterDoneBtns={counterDoneBtns} setCounterDoneBtns={setCounterDoneBtns}/>
+            <BloodProducts
+              setShowNextBtn={setShowNextBtn}
+              inPopOutBloodProducts={inPopOutBloodProducts}
+              setinPopOutBloodProducts={setinPopOutBloodProducts}
+              counterDoneBtns={counterDoneBtns}
+              setCounterDoneBtns={setCounterDoneBtns}
+            />
           </>
         )}
-         {!showQuestion && subjNum === 7 && (
-          <EndScreen/>
-        )}
+        {!showQuestion && subjNum === 7 && <EndScreen />}
       </div>
       <div className="btns-container">
         {((!showDish && !showQuestion && !inPopOutBloodProducts) ||
@@ -433,7 +472,12 @@ function InfoScreen() {
               src={next}
               alt="next"
               onClick={nextPart}
-              className={`moving-btn next ${(!showNextBtn || (subjNum=== 5 && numPartLesson === 1 && !scrolledToBottom)) ? "disable" : ""}`}
+              className={`moving-btn next ${
+                !showNextBtn ||
+                (subjNum === 5 && numPartLesson === 1 && !scrolledToBottom)
+                  ? "disable"
+                  : ""
+              }`}
             />
             <img
               src={prev}

@@ -3,7 +3,12 @@ import explainVideo from "../assets/images/explainVideo.mp4";
 import arrow from "../assets/images/arrow.png";
 import "../css/PreparationPopOut.css";
 
-function PreparationPopOut({ setShowQuestion, videoEnded, setVideoEnded, setShowNextBtn }) {
+function PreparationPopOut({
+  videoEnded,
+  setVideoEnded,
+  setShowNextBtn,
+  setShowQuestion
+}) {
   const [partNum, setPartNum] = useState(0);
 
   const handleVideoEnd = () => {
@@ -23,7 +28,17 @@ function PreparationPopOut({ setShowQuestion, videoEnded, setVideoEnded, setShow
         partNum === 1 ? "scale-for-video-container" : ""
       }`}
     >
-
+      {/* close button */}
+      {videoEnded && (
+        <p
+          className="close-pop-out-btn to-right-arrow"
+          onClick={() => {
+            setShowQuestion(true);
+          }}
+        >
+          X
+        </p>
+      )}
       {partNum === 0 && (
         <>
           <p className="bold red">במידה וה- QINFLOW לא עובד</p>
@@ -32,8 +47,10 @@ function PreparationPopOut({ setShowQuestion, videoEnded, setVideoEnded, setShow
       )}
       {partNum === 1 && (
         <>
-          <p>דגשים לטכניקת השימוש בברז תלת ומזרק 20cc:</p>
-          <p className="">- נא לראות את כל הסרטון -</p>
+          <p className="bold-video-title">
+            דגשים לטכניקת השימוש בברז תלת ומזרק 20cc:
+          </p>
+          <p className="instruct-video">- נא לראות את כל הסרטון -</p>
           <video
             className="explain-video"
             controls

@@ -58,7 +58,7 @@ function PopOutBloodProducts({
       timer = setTimeout(() => {
         setShowCloseBtn(true); // show after 5 sec
       }, 5000);
-    } else if (((indexBtn === 0 || indexBtn === 2) && indexInfo === 0) || indexBtn === 3 && !isAllDropsClicked()) {
+    } else if (((indexBtn === 0 || indexBtn === 1) && indexInfo === 0) || indexBtn === 2 && !isAllDropsClicked()) {
       setShowCloseBtn(false); // stay hidden
     } else {
       setShowCloseBtn(true); // show immediately
