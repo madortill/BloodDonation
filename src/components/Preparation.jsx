@@ -3,8 +3,9 @@ import "../css/Preparation.css";
 import data from "../data.json";
 import video from "../assets/images/video.png";
 import StepsList from "./StepsList";
+import PreparationPopOut from "./PreparationPopOut";
 
-function Preparation({ numPartPreparation, setShowQuestion }) {
+function Preparation({ setShowNextBtn, numPartPreparation, setShowQuestion,videoEnded, setVideoEnded }) {
 
   return (
     <div className="preparation">
@@ -22,19 +23,7 @@ function Preparation({ numPartPreparation, setShowQuestion }) {
       )}
 
       {numPartPreparation === 2  && (
-        <div className="preparation-pop-out">
-          <p
-          className="close-pop-out-btn"
-          onClick={() => {
-            setShowQuestion(true);
-          }}
-        >
-          X
-        </p>
-          {/* <p className="close-btn">X</p> */}
-          <p className="bold red">במידה וה- QINFLOW לא עובד</p>
-          <p>לתת את המנה למרות הטמפ’ הנמוכה!</p>
-        </div>
+        <PreparationPopOut setShowQuestion={setShowQuestion} videoEnded={videoEnded} setVideoEnded={setVideoEnded} setShowNextBtn={setShowNextBtn}/>
       )}
     </div>
   );

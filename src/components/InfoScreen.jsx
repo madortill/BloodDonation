@@ -49,6 +49,8 @@ function InfoScreen() {
   const [doneReading, setDoneReading] = useState(false);
   //prepration
   const [numPartPreparation, setNumPartPreparation] = useState(0);
+  const [videoEnded, setVideoEnded] = useState(false);
+
   //reactions
   const [numPartReactions, setNumPartReactions] = useState(0);
   const [finishedResponseSus, setFinishedResponseSus] = useState(false);
@@ -152,7 +154,12 @@ function InfoScreen() {
       case 3:
         if (numPartPreparation === 0 || numPartPreparation === 1) {
           setNumPartPreparation((prev) => prev + 1);
-        } else if (!showQuestion && numPartPreparation === 2) {
+          if(numPartPreparation === 1) {
+            if(!videoEnded) {
+              setShowNextBtn(false);
+            }
+          }
+        } else if (videoEnded && numPartPreparation === 2) {
           setShowQuestion(true);
         } else if (showQuestion) {
           doneQues();
@@ -258,7 +265,11 @@ function InfoScreen() {
         } else if (
           (!showQuestion && numPartPreparation === 2) ||
           numPartPreparation === 1
+          
         ) {
+          if(videoEnded && numPartPreparation === 2) {
+            showNextBtn(true);
+          }
           setNumPartPreparation((prev) => prev - 1);
         }
         if (showQuestion) {
@@ -389,7 +400,7 @@ function InfoScreen() {
         {!showQuestion && subjNum === 3 && (
           <>
             <p className="header-text">{data.titles[subjNum][0]}</p>
-            <Preparation numPartPreparation={numPartPreparation} setShowQuestion={setShowQuestion}/>
+            <Preparation setShowNextBtn={setShowNextBtn} numPartPreparation={numPartPreparation} setShowQuestion={setShowQuestion} videoEnded={videoEnded} setVideoEnded={setVideoEnded}/>
           </>
         )}
         {!showQuestion && subjNum === 4 && (
