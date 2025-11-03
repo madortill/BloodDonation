@@ -8,6 +8,7 @@ import page2 from "../assets/images/book/3.svg";
 import page3 from "../assets/images/book/4.svg";
 import page4 from "../assets/images/book/5.svg";
 import page5 from "../assets/images/book/6.svg";
+import medicalPdf from "../assets/images/הנחיות הנדסה רפואית.pdf";
 
 // שכבת הקליק השקופה
 function HotPathOverlay() {
@@ -16,7 +17,7 @@ function HotPathOverlay() {
       viewBox="-550 0 1200 900"  // תעדכני לפי ה-viewBox של 5.svg
       className="hotpath-overlay"
     >
-      <a href="src/assets/images/הנחיות הנדסה רפואית.pdf" target="_blank">
+      <a href={medicalPdf} target="_blank"  rel="noopener noreferrer">
         <path
           d="M 24.019531 7.605469 L 24.019531 370.375 L 621.5 370.375 L 621.5 7.605469 Z"
           fill="transparent"
