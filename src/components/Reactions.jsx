@@ -13,7 +13,7 @@ function Reactions({ numPartReactions, setShowNextBtn, finishedResponseSus, setF
          {(numPartReactions=== 0 || numPartReactions === 2) &&
        <>
        {numPartReactions === 0 &&
-       <p>מדובר במוצר דם עם ת”ל! לתת באינדיקציה בלבד!</p>       
+       <p>מדובר במוצר דם עם תופעות לוואי! יש לתת באינדיקציה בלבד!</p>       
        }
        <ResponsesTypes numPart={numPartResponsesTypes}/>
        </>

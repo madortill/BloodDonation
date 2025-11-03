@@ -14,7 +14,7 @@ function Lessons({ numPartLesson, setScrolledToBottom }) {
     },
     {
       img: bag,
-      back: "בדיקת כוננות ותוקף פעמיים ביום",
+      back: "בדיקת כוננות - טמפרטורה, סוג ותוקף פעמיים ביום",
       color: "#FFAF02",
     },
     {
