@@ -34,11 +34,27 @@ function HotPathOverlay() {
 
 
 function Book({ setShowNextBtn, setDoneReading }) {
-  const pages = [page5, page4, page3, page2, page1, cover];
-  const [isMounted, setIsMounted] = useState(false);
-  const [dimensions] = useState({ width: 350, height: 500 });
+  const [dimensions, setDimensions] = useState({ width: 350, height: 500 });
   const bookRef = useRef(null);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 530) {
+        setDimensions({ width: 210, height: 300 }); // טלפונים קטנים
+      } else if (window.innerWidth <= 600) {
+        setDimensions({ width: 250, height: 360 }); // טלפונים רגילים
+      } else {
+        setDimensions({ width: 350, height: 500 }); // ברירת מחדל
+      }
+    };
+
+    handleResize(); // להריץ בהתחלה
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const pages = [page5, page4, page3, page2, page1, cover];
+  const [isMounted, setIsMounted] = useState(false);
   useEffect(() => setIsMounted(true), []);
 
   const onPageFlip = (e) => {
@@ -90,5 +106,6 @@ function Book({ setShowNextBtn, setDoneReading }) {
     </div>
   );
 }
+
 
 export default Book;
