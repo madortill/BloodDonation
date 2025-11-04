@@ -27,5 +27,8 @@
         margin: 0.2rem;
     }
 
+    .no-margin-top {
+        margin-top: 0rem;
+    }
  
 }

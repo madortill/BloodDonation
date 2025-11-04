@@ -42,7 +42,7 @@ function ResponsesTypes({ numPart }) {
   return (
     <div>
       {numPart === 0 && (
-        <p className="bold header-responses">
+        <p className="bold header-responses no-margin-top">
           לאחר עצירת מנת הדם ומעבר לטיפול בפלזמה, יש להוסיף טיפול בהתאם לסוג
           התגובה
         </p>
