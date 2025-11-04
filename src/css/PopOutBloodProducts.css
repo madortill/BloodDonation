@@ -18,8 +18,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    /* transition: all 0.1s; */
+    justify-content: space-between;
 }
 
 .blood-product {
@@ -120,9 +119,10 @@
 
 @media screen and (max-width: 600px) {
     .container-blood-product-info {
-        height: 35rem;
-        width: 32rem;
-        /* align-items: flex-start; */
+        height: 32rem;
+        display: flex;
+        width: 30rem;
+        align-items: flex-start;
     }
 
     .pop-blood-prod-arrow {
@@ -140,7 +140,47 @@
 
     .graph-blood-prod {
         height: 18rem;
-        max-width: 32rem;
+        max-width: 30rem;
+        /* margin-right: 1rem; */
+    }
+
+    .sub-title-blood-prod {
+        margin: 2rem;
+    }
+
+    .fix-added-to-graph {
+        margin-right: 0.5rem;
+    }
+
+    .second-graph {
+       
+        position: static;
+        border-radius: 0rem;
+        width: 30rem;
+        /* font-size: 1.1rem; */
+        margin-top: -1rem;
+    }
+
+    .fix-margin-graph {
+        margin: 0rem;
+    }
+
+    .fix-to-center-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .with-margin-r-l {
+        margin: 0rem;
         margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    .white-bg {
+        width: 18rem;
+        height: 8rem;
+        padding-right: 8rem;
+        padding-left: 0.5rem;
     }
 }

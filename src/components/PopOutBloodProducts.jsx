@@ -26,7 +26,7 @@ function PopOutBloodProducts({
         "תמורות בתחום החייאת בקרת נזקים בשדה לאורך השנים",
         "ניתן לראות שנותנים טיפול בנפח איכותי יותר לאורך השנים",
       ],
-      graphUrl: [three,two],
+      graphUrl: [three, two],
     },
     {
       headline: "גישה וסקולרית",
@@ -58,7 +58,10 @@ function PopOutBloodProducts({
       timer = setTimeout(() => {
         setShowCloseBtn(true); // show after 5 sec
       }, 5000);
-    } else if (((indexBtn === 0 || indexBtn === 1) && indexInfo === 0) || indexBtn === 2 && !isAllDropsClicked()) {
+    } else if (
+      ((indexBtn === 0 || indexBtn === 1) && indexInfo === 0) ||
+      (indexBtn === 2 && !isAllDropsClicked())
+    ) {
       setShowCloseBtn(false); // stay hidden
     } else {
       setShowCloseBtn(true); // show immediately
@@ -90,7 +93,11 @@ function PopOutBloodProducts({
   return (
     <div className="blood-product">
       <div className="blood-product-headline">{arrInfo[indexBtn].headline}</div>
-      <div className={`container-blood-product-info ${indexBtn === 2 ? "show-column" : ""}`}>
+      <div
+        className={`container-blood-product-info ${
+          indexBtn === 2 ? "show-column" : ""
+        }`}
+      >
         {/* close button */}
         {showCloseBtn && (
           <p
@@ -108,32 +115,19 @@ function PopOutBloodProducts({
 
         {indexBtn !== 3 && (
           <>
-            {(indexBtn !== 2) && (
+            {indexBtn !== 2 && (
               <img
                 src={arrow}
                 alt="arrow"
-                className={`clock-arrow pop-blood-prod-arrow back-pop-arrow ${indexInfo === 0 ? "hide" : ""} to-right-arrow`}
+                className={`clock-arrow pop-blood-prod-arrow back-pop-arrow ${
+                  indexInfo === 0 ? "hide" : ""
+                } to-right-arrow`}
                 onClick={() => setIndexInfo(indexInfo - 1)}
               />
-             )} 
+            )}
 
-            <div>
-              <p>{arrInfo[indexBtn].text[indexInfo]}</p>
-              {indexBtn === 0 && indexInfo === 1 ? (
-  <video
-    src={two}
-    autoPlay
-    playsInline
-    style={{ objectFit: "cover" }}
-    className="graph-blood-prod"
-  />
-) : indexBtn !== 2 ? (
-  <img
-    src={arrInfo[indexBtn].graphUrl[indexInfo]}
-    alt="img"
-    className={`graph-blood-prod ${indexBtn === 1 && indexInfo === 1 ? "fix-margin-graph" : ""}`}
-  />
-) : null}
+            <div className="fix-to-center-display">
+              <p className="sub-title-blood-prod">{arrInfo[indexBtn].text[indexInfo]}</p>
               {indexBtn === 1 && (
                 <div className="second-graph">
                   {vasculaApproach[indexInfo].map((text, i) => (
@@ -143,33 +137,64 @@ function PopOutBloodProducts({
                   ))}
                 </div>
               )}
-              {indexBtn === 1 && indexInfo === 1 && (
-                <p>זמן חציוני עד הזלפת מוצר דם מרגע הגעת צוות אר”ן היה 20 דקות</p>
-              )}
+              {indexBtn === 0 && indexInfo === 1 ? (
+                <video
+                  src={two}
+                  autoPlay
+                  playsInline
+                  style={{ objectFit: "cover" }}
+                  className="graph-blood-prod"
+                />
+              ) : indexBtn !== 2 ? (
+                <img
+                  src={arrInfo[indexBtn].graphUrl[indexInfo]}
+                  alt="img"
+                  className={`graph-blood-prod ${
+                    indexBtn === 1 && indexInfo === 1 ? "fix-margin-graph" : ""
+                  }`}
+                />
+              ) : null}
+              
+              {/* {indexBtn === 1 && indexInfo === 1 && (
+                <p className="with-margin-r-l">
+                  זמן חציוני עד הזלפת מוצר דם מרגע הגעת צוות אר”ן היה 20 דקות
+                </p>
+              )} */}
             </div>
 
-            {(indexBtn !== 2) && (
+            {indexBtn !== 2 && (
               <img
                 src={arrow}
                 alt="arrow"
-                className={`clock-arrow pop-blood-prod-arrow next-pop-arrow ${indexInfo === 1 ? "hide" : ""}`}
+                className={`clock-arrow pop-blood-prod-arrow next-pop-arrow ${
+                  indexInfo === 1 ? "hide" : ""
+                }`}
                 onClick={() => setIndexInfo(indexInfo + 1)}
               />
-            )} 
+            )}
           </>
         )}
 
         {indexBtn === 2 && (
           <>
-            <img src={clickInstruct} alt="instruct" className="instruct-click" />
+            <img
+              src={clickInstruct}
+              alt="instruct"
+              className="instruct-click"
+            />
             {arrDrops.map((d, index) => (
               <div className="row-drop-info" key={index}>
                 <div
                   className="drop-container"
                   onClick={() => {
                     setClickedDrops((prev) => {
-                      const newState = prev.map((val, i) => (i === index ? true : val));
-                      if (newState.every(Boolean)){ setShowNextBtn(true); setShowCloseBtn(true);}
+                      const newState = prev.map((val, i) =>
+                        i === index ? true : val
+                      );
+                      if (newState.every(Boolean)) {
+                        setShowNextBtn(true);
+                        setShowCloseBtn(true);
+                      }
                       return newState;
                     });
                   }}
@@ -178,8 +203,16 @@ function PopOutBloodProducts({
                   <img className="drop-img" src={drop} alt="drop" />
                 </div>
 
-                <div className={`white-container white-bg ${!clickedDrops[index] ? "hide-display" : ""}`}>
-                  <img src={arrInfo[indexBtn].graphUrl[index]} alt="graph" className="drop-graph" />
+                <div
+                  className={`white-container white-bg ${
+                    !clickedDrops[index] ? "hide-display" : ""
+                  }`}
+                >
+                  <img
+                    src={arrInfo[indexBtn].graphUrl[index]}
+                    alt="graph"
+                    className="drop-graph"
+                  />
                 </div>
               </div>
             ))}
