@@ -64,6 +64,7 @@
     fill: rgba(255, 255, 255, 0.1);
   }
   
+  
   /* התאמות רוחב למסכים שונים */
   @media screen and (max-width: 970px) {
     .book {
@@ -83,3 +84,25 @@
     }
   }
   
+/* תיקון ממוקד לקפיצה בין PAGE4 ל-PAGE5 */
+.page-with-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .page-with-overlay img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  /* מוודא ששכבת ה-SVG לא משנה גובה רגעית */
+  .page-with-overlay .hotpath-overlay {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateY(0) !important;
+  }

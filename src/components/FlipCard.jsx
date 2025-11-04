@@ -21,7 +21,7 @@ function FlipCard({ imgUrl, backText, color = "#F88C01", onAllFlipped, isBloodBa
   };
 
   return (
-    <div className={`flip-card ${onStart} ${isBloodBag? "change-bag-size" : ""}`}    >
+    <div className={`flip-card ${onStart} ${isBloodBag? "change-bag-size" : "change-card-scale"}`}    >
       <div className="flip-card-inner">
         <div
           className="flip-card-front"
