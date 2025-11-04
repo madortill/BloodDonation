@@ -67,7 +67,9 @@ function PlasmaPart({
           <p className="plasma-info-text">
             {arrInfoPlasma[numPartInPlasma - 1]}
           </p>
-
+          {numPartInPlasma === 5 && (
+          <img src={graph} alt="graph" className="graph-plasma" />
+        )}
           {numPartInPlasma !== 0 && (
             <div className="moving-btns-container">
               <img
@@ -89,9 +91,7 @@ function PlasmaPart({
             </div>
           )}
         </div>
-        {numPartInPlasma === 5 && (
-          <img src={graph} alt="graph" className="graph-plasma" />
-        )}
+        
       </div>
     </div>
   );

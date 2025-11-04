@@ -16,7 +16,13 @@
 }
 
 @media screen and (max-width: 600px) {
-    .expired {
+    /* .expired {
         flex-direction: column;
+    } */
+
+    .img-type {
+        width: 11rem;
+        height: 11rem;
+        margin: 0.2rem;
     }
 }

@@ -23,11 +23,11 @@
     font-size: 2rem;
     margin: 0rem;
     display: inline;
-   
+
 }
 
 .bold-inline {
-    margin-right: 0.5rem; 
+    margin-right: 0.5rem;
 }
 
 .title-indications {
@@ -62,9 +62,9 @@
 }
 
 .arrow-container {
-position: relative;
-width: 17rem;
-margin-bottom: -0.5rem;
+    position: relative;
+    width: 17rem;
+    margin-bottom: -0.5rem;
 }
 
 .arrow-text {
@@ -164,18 +164,18 @@ margin-bottom: -0.5rem;
     margin-bottom: -1rem;
 }
 
-.indications-arrow{
+.indications-arrow {
     transform: rotate(270deg);
     height: 3rem;
     margin-top: -1rem;
 }
 
-.protocol-btn{
+.protocol-btn {
     position: absolute;
     bottom: 0rem;
     left: 0rem;
     width: 16rem;
-    
+
 }
 
 .active-protocol-btn {
@@ -199,7 +199,8 @@ margin-bottom: -0.5rem;
     position: absolute;
     height: 40rem;
     top: 2rem;
-    box-shadow: -4px 4px 0.7rem rgba(0, 0, 0, 0.1); /* x-offset y-offset blur color */
+    box-shadow: -4px 4px 0.7rem rgba(0, 0, 0, 0.1);
+    /* x-offset y-offset blur color */
     z-index: 3;
 }
 
@@ -211,8 +212,8 @@ margin-bottom: -0.5rem;
 }
 
 .protocol-img {
-height: 100%;
-border-radius: 1rem;
+    height: 100%;
+    border-radius: 1rem;
 }
 
 .priority-order {
@@ -222,26 +223,49 @@ border-radius: 1rem;
 }
 
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px); /* float up */
-  }
-  100% {
-    transform: translateY(0px);   /* back to original */
-  }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+        /* float up */
+    }
+
+    100% {
+        transform: translateY(0px);
+        /* back to original */
+    }
 }
 
 
 @media screen and (max-width: 600px) {
 
-.bubble-indications, .more-info-bubble {
-    width: 28rem;
-}
+    .bubble-indications,
+    .more-info-bubble {
+        width: 28rem;
+    }
 
-.more-info-bubble {
-    padding-top:inherit;
-}
+    .more-info-bubble {
+        padding-top: inherit;
+    }
 
+    .protocol-btn {
+        width: 13rem;
+    }
+    @keyframes growBtn {
+
+        0%,
+        100% {
+            width: 13rem;
+        }
+    
+        50% {
+            width: 15rem;
+        }
+    }
+
+    .indications-arrow {
+        height: 2rem;
+    }
 }
