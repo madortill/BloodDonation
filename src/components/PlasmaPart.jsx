@@ -68,30 +68,29 @@ function PlasmaPart({
             {arrInfoPlasma[numPartInPlasma - 1]}
           </p>
           {numPartInPlasma === 5 && (
-          <img src={graph} alt="graph" className="graph-plasma" />
-        )}
-          {numPartInPlasma !== 0 && (
-            <div className="moving-btns-container">
-              <img
-                id="back-btn"
-                src={arrow}
-                alt="arrow"
-                className="arrow arrow-in-plasma-part prev-arrow"
-                onClick={handleArrowClick}
-              />
-              <img
-                id="next-btn"
-                src={arrow}
-                alt="arrow"
-                className={`arrow arrow-in-plasma-part ${
-                  numPartInPlasma === 5 ? "hide" : ""
-                }`}
-                onClick={handleArrowClick}
-              />
-            </div>
+            <img src={graph} alt="graph" className="graph-plasma" />
           )}
         </div>
-        
+        {numPartInPlasma !== 0 && (
+          <div className="moving-btns-container">
+            <img
+              id="back-btn"
+              src={arrow}
+              alt="arrow"
+              className="arrow arrow-in-plasma-part prev-arrow"
+              onClick={handleArrowClick}
+            />
+            <img
+              id="next-btn"
+              src={arrow}
+              alt="arrow"
+              className={`arrow arrow-in-plasma-part ${
+                numPartInPlasma === 5 ? "hide" : ""
+              }`}
+              onClick={handleArrowClick}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

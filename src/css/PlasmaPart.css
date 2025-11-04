@@ -40,9 +40,9 @@
     width: 50rem;
     display: flex;
     margin: 4rem;
-    
+    flex-direction: column;
     align-items: center;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 
 .final-scale-text {    
@@ -83,14 +83,15 @@
 
 .center-inside {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
+    flex-direction: row;
 }
 
 @media screen and (max-width: 600px) {
 
     .center-inside {
-        /* width: 24rem; */
+        flex-direction: column;
     }
 
     .plasma-container {
@@ -112,5 +113,9 @@
     .test-tube {
         margin-right: -1rem;
         height: 16rem;
+    }
+
+    .second-place-test-tube {
+        right: 0.5rem;
     }
 }
