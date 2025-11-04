@@ -1,73 +1,85 @@
 .book {
-  margin-top: 4rem;
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  top: 10rem;
-  position: absolute;
-  direction: ltr;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-}
-
-.page-img {
-  width: 100%;
-  height: 100%;
-}
-
-.not-really {
-  background-color: transparent;
-}
-
-.page.hard {
-  background-color: transparent;
-  transform-origin: right center !important;
-}
-
-/* דף עם שכבת קליק */
-.page-with-overlay {
-  position: relative;
-}
-
-/* כל שכבת ה-SVG אינה לוכדת קליקים כברירת מחדל */
-.hotpath-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* רק ה-path בפועל מגיב לקליק */
-.hotpath-overlay .pdf-hotzone {
-  cursor: pointer;
-  pointer-events: all;
-  transition: fill 0.2s ease;
-}
-
-/* אפקט hover קל על האזור הלחיץ */
-.hotpath-overlay .pdf-hotzone:hover {
-  fill: rgba(255, 255, 255, 0.1);
-}
-
-/* התאמות רוחב למסכים שונים */
-@media screen and (max-width: 970px) {
-  .book {
-    top: 6.5rem;
+    margin-top: 4rem;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    top: 10rem;
+    position: absolute;
+    direction: ltr;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease;
   }
-}
-
-@media screen and (max-width: 600px) {
-  .book {
-    top: -3.5rem;
+  
+  /* מוסתר לפני שה-FlipBook מוכן */
+  .book.hidden {
+    opacity: 0;
   }
-}
-
-@media screen and (max-width: 530px) {
-  .book {
-    top: 0rem;
+  
+  /* מופיע בהדרגה אחרי onInit */
+  .book.visible {
+    opacity: 1;
   }
-}
+  
+  .page-img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .not-really {
+    background-color: transparent;
+  }
+  
+  .page.hard {
+    background-color: transparent;
+    transform-origin: right center !important;
+  }
+  
+  /* דף עם שכבת קליק */
+  .page-with-overlay {
+    position: relative;
+  }
+  
+  /* כל שכבת ה-SVG אינה לוכדת קליקים כברירת מחדל */
+  .hotpath-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  /* רק ה-path בפועל מגיב לקליק */
+  .hotpath-overlay .pdf-hotzone {
+    cursor: pointer;
+    pointer-events: all;
+    transition: fill 0.2s ease;
+  }
+  
+  /* אפקט hover קל על האזור הלחיץ */
+  .hotpath-overlay .pdf-hotzone:hover {
+    fill: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* התאמות רוחב למסכים שונים */
+  @media screen and (max-width: 970px) {
+    .book {
+      top: 6.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .book {
+      top: -3.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 530px) {
+    .book {
+      top: 0rem;
+    }
+  }
+  

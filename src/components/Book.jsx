@@ -10,14 +10,10 @@ import page4 from "../assets/images/book/5.svg";
 import page5 from "../assets/images/book/6.svg";
 import medicalPdf from "../assets/images/הנחיות הנדסה רפואית.pdf";
 
-// שכבת הקליק השקופה
 function HotPathOverlay() {
   return (
-    <svg
-      viewBox="-550 0 1200 900"  // תעדכני לפי ה-viewBox של 5.svg
-      className="hotpath-overlay"
-    >
-      <a href={medicalPdf} target="_blank"  rel="noopener noreferrer">
+    <svg viewBox="-550 0 1200 900" className="hotpath-overlay">
+      <a href={medicalPdf} target="_blank" rel="noopener noreferrer">
         <path
           d="M 24.019531 7.605469 L 24.019531 370.375 L 621.5 370.375 L 621.5 7.605469 Z"
           fill="transparent"
@@ -31,31 +27,27 @@ function HotPathOverlay() {
   );
 }
 
-
-
 function Book({ setShowNextBtn, setDoneReading }) {
   const [dimensions, setDimensions] = useState({ width: 350, height: 500 });
+  const [bookReady, setBookReady] = useState(false);
   const bookRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 530) {
-        setDimensions({ width: 210, height: 300 }); // טלפונים קטנים
+        setDimensions({ width: 210, height: 300 });
       } else if (window.innerWidth <= 600) {
-        setDimensions({ width: 250, height: 360 }); // טלפונים רגילים
+        setDimensions({ width: 250, height: 360 });
       } else {
-        setDimensions({ width: 350, height: 500 }); // ברירת מחדל
+        setDimensions({ width: 350, height: 500 });
       }
     };
-
-    handleResize(); // להריץ בהתחלה
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const pages = [page5, page4, page3, page2, page1, cover];
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
 
   const onPageFlip = (e) => {
     const currentPage = e.data;
@@ -67,45 +59,51 @@ function Book({ setShowNextBtn, setDoneReading }) {
     }
   };
 
+  const handleInit = () => {
+    // מופעל רק כשהספר באמת מוכן
+    setBookReady(true);
+    if (bookRef.current) {
+      const api = bookRef.current.pageFlip();
+      api.turnToPage(5);
+    }
+  };
+
   return (
-    <div className="book">
-      {isMounted && (
-        <HTMLFlipBook
-          ref={bookRef}
-          width={dimensions.width}
-          height={dimensions.height}
-          maxShadowOpacity={0.5}
-          showCover={true}
-          size="fixed"
-          direction="ltr"
-          startPage={5}
-          onFlip={onPageFlip}
-        >
-          {pages.map((pageImg, index) => (
-            <div className="page" key={index}>
-              {index === 1 ? (
-                <div className="page page-with-overlay">
-                  <img
-                    src={pageImg}
-                    alt={`page ${index + 1}`}
-                    className="page-img"
-                  />
-                  <HotPathOverlay />
-                </div>
-              ) : (
+    <div className={`book ${bookReady ? "visible" : "hidden"}`}>
+      <HTMLFlipBook
+        ref={bookRef}
+        width={dimensions.width}
+        height={dimensions.height}
+        maxShadowOpacity={0.5}
+        showCover={true}
+        size="fixed"
+        direction="ltr"
+        onFlip={onPageFlip}
+        onInit={handleInit} // ✅ הספר מוכן
+      >
+        {pages.map((pageImg, index) => (
+          <div className="page" key={index}>
+            {index === 1 ? (
+              <div className="page page-with-overlay">
                 <img
                   src={pageImg}
                   alt={`page ${index + 1}`}
                   className="page-img"
                 />
-              )}
-            </div>
-          ))}
-        </HTMLFlipBook>
-      )}
+                <HotPathOverlay />
+              </div>
+            ) : (
+              <img
+                src={pageImg}
+                alt={`page ${index + 1}`}
+                className="page-img"
+              />
+            )}
+          </div>
+        ))}
+      </HTMLFlipBook>
     </div>
   );
 }
-
 
 export default Book;
