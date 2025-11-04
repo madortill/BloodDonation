@@ -268,4 +268,11 @@
     .indications-arrow {
         height: 2rem;
     }
+
+    .more-info-bubble {
+        height: 0rem;
+        position: absolute;
+        top: 17rem;
+
+    }
 }
