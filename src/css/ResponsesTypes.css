@@ -21,14 +21,16 @@
     }
 
     .img-type {
-        width: 29rem;
-
-        height: 11rem;
+        width: 21rem;
+        height: 9rem;
         margin: 0.2rem;
     }
 
     .no-margin-top {
         margin-top: 0rem;
+        margin-bottom: 0.5rem;
     }
- 
+    .header-responses {
+        font-size: 1.4rem;
+    }
 }
