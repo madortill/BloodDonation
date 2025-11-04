@@ -40,9 +40,11 @@
     width: 50rem;
     display: flex;
     margin: 4rem;
-    flex-direction: column;
+    
     align-items: center;
+    flex-direction: row;
 }
+
 .final-scale-text {    
     margin: 0.8rem
 }
@@ -77,4 +79,28 @@
 .graph-plasma {
     height: 15rem;
     width: 24rem;
+}
+
+.center-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+
+    .plasma-container {
+        width: 31rem;
+        height: 30rem;
+    }
+    
+    .info-plasma-container{
+        flex-direction: column;
+        margin: 1rem;
+
+    }
+
+    .test-tube {
+        margin-right: -1rem;
+    }
 }

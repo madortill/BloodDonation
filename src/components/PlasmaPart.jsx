@@ -6,7 +6,12 @@ import three from "../assets/images/testTubes/three.svg";
 import graph from "../assets/images/graph/threePlasma.png";
 import arrow from "../assets/images/arrow.png";
 
-function PlasmaPart({ numPartInPlasma, setNumPartInPlasma, setFinishedPlasmaExplain, setShowNextBtn }) {
+function PlasmaPart({
+  numPartInPlasma,
+  setNumPartInPlasma,
+  setFinishedPlasmaExplain,
+  setShowNextBtn,
+}) {
   const arrInfoPlasma = [
     "פלזמה היא החלק בנוזל הדם המכיל את פקטורי הקרישה ללא יתר רכיבי הדם (תאי דם לבנים, אדומים וטסיות). ",
     "בצבא נעשה שימוש בפלזמה מיובשת (FDP) מסוג LYOPLAS המיוצר מתורם אחד ונוח לשימוש מבחינה לוגיסטית. ",
@@ -17,7 +22,7 @@ function PlasmaPart({ numPartInPlasma, setNumPartInPlasma, setFinishedPlasmaExpl
   const handleArrowClick = ({ target }) => {
     if (target.id === "next-btn") {
       setNumPartInPlasma((prev) => prev + 1);
-      if(numPartInPlasma === 4) {
+      if (numPartInPlasma === 4) {
         setFinishedPlasmaExplain(true);
         setShowNextBtn(true);
       }
@@ -50,35 +55,42 @@ function PlasmaPart({ numPartInPlasma, setNumPartInPlasma, setFinishedPlasmaExpl
         />
         {numPartInPlasma === 0 && <p>לחצו</p>}
       </div>
-      {numPartInPlasma === 5 && (
+      {/* {numPartInPlasma === 5 && (
         <img src={graph} alt="graph" className="graph-plasma" />
-      )}
+      )} */}
       <div
         className={`info-plasma-container ${
           numPartInPlasma === 5 ? "final-scale-text" : ""
         }`}
       >
-        <p className="plasma-info-text">{arrInfoPlasma[numPartInPlasma - 1]}</p>
+        <div className="center-inside">
+          <p className="plasma-info-text">
+            {arrInfoPlasma[numPartInPlasma - 1]}
+          </p>
 
-        {numPartInPlasma !== 0 && (
-          <div className="moving-btns-container">
-            <img
-              id="back-btn"
-              src={arrow}
-              alt="arrow"
-              className="arrow arrow-in-plasma-part prev-arrow"
-              onClick={handleArrowClick}
-            />
-            <img
-              id="next-btn"
-              src={arrow}
-              alt="arrow"
-              className={`arrow arrow-in-plasma-part ${
-                numPartInPlasma === 5 ? "hide" : ""
-              }`}
-              onClick={handleArrowClick}
-            />
-          </div>
+          {numPartInPlasma !== 0 && (
+            <div className="moving-btns-container">
+              <img
+                id="back-btn"
+                src={arrow}
+                alt="arrow"
+                className="arrow arrow-in-plasma-part prev-arrow"
+                onClick={handleArrowClick}
+              />
+              <img
+                id="next-btn"
+                src={arrow}
+                alt="arrow"
+                className={`arrow arrow-in-plasma-part ${
+                  numPartInPlasma === 5 ? "hide" : ""
+                }`}
+                onClick={handleArrowClick}
+              />
+            </div>
+          )}
+        </div>
+        {numPartInPlasma === 5 && (
+          <img src={graph} alt="graph" className="graph-plasma" />
         )}
       </div>
     </div>

@@ -120,13 +120,12 @@
 
     .graph-container {
         width: auto;
-        /* border-top-right-radius: 0rem; */
-        /* border-bottom-left-radius: 1rem; */
+        height: 27rem;
     }
 
     .graph-img {
-        margin-right: 0rem;
-        margin-top: 4rem;
+        margin-right: 3rem;
+        margin-top: 0rem;
     }
 
     .graph-btn-container {
