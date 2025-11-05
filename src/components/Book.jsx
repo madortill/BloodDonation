@@ -2,12 +2,19 @@ import React, { useState, useEffect, useRef } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "../css/Book.css";
 
-import cover from "../assets/images/book/1.svg";
-import page1 from "../assets/images/book/2.svg";
-import page2 from "../assets/images/book/3.svg";
-import page3 from "../assets/images/book/4.svg";
+// import cover from "../assets/images/book/1.svg";
+// import page1 from "../assets/images/book/2.svg";
+// import page2 from "../assets/images/book/3.svg";
+// import page3 from "../assets/images/book/4.svg";
 import page4 from "../assets/images/book/5.svg";
-import page5 from "../assets/images/book/6.svg";
+// import page5 from "../assets/images/book/6.svg";
+
+import cover from "../assets/images/book/png/1.png";
+import page1 from "../assets/images/book/png/2.png";
+import page2 from "../assets/images/book/png/3.png";
+import page3 from "../assets/images/book/png/4.png";
+import page5 from "../assets/images/book/png/6.png";
+
 import medicalPdf from "../assets/images/הנחיות הנדסה רפואית.pdf";
 
 function HotPathOverlay() {
@@ -71,15 +78,20 @@ function Book({ setShowNextBtn, setDoneReading }) {
   return (
     <div className={`book ${bookReady ? "visible" : "hidden"}`}>
       <HTMLFlipBook
-        ref={bookRef}
-        width={dimensions.width}
-        height={dimensions.height}
-        maxShadowOpacity={0.5}
-        showCover={true}
-        size="fixed"
-        direction="ltr"
-        onFlip={onPageFlip}
-        onInit={handleInit} // ✅ הספר מוכן
+   ref={bookRef}
+   width={dimensions.width}
+   height={dimensions.height}
+   minWidth={dimensions.width}
+   minHeight={dimensions.height}
+   maxWidth={dimensions.width}
+   maxHeight={dimensions.height}
+   size="fixed"
+   drawShadow={false}
+   showCover={window.innerWidth > 600}  // ✅ רק במחשב תהיה כריכה אמיתית
+   usePortrait={window.innerWidth <= 600}
+   mobileScrollSupport={true}
+   onFlip={onPageFlip}
+   onInit={handleInit}
       >
         {pages.map((pageImg, index) => (
           <div className="page" key={index}>
