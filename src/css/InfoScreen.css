@@ -45,7 +45,7 @@ transform: translateX(-50%);
   opacity: 0.6;
   pointer-events: none; /* optional: prevent clicking */
 }
-@media screen and (max-width: 830px) {
+/* @media screen and (max-width: 830px) {
 
     .information-container {
         position: static;
@@ -56,9 +56,9 @@ transform: translateX(-50%);
     .header-text {
         margin-top: 6rem;
     }
-}
+} */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 830px) {
 
     .info-screen {
         height: 91vh;

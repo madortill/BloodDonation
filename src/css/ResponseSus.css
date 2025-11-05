@@ -55,7 +55,7 @@ margin-bottom: 0rem;
     display: flex;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 830px) {
     .fix-width {
         width: 30rem
     }
