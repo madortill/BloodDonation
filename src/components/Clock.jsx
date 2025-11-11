@@ -6,7 +6,7 @@ function Clock({ setShowNextBtn, setFinishLogistics }) {
   const [indexInfo, setIndexInfo] = useState(0);
 
   const info = [
-    'בצה"ל כעת נהוג שימוש למשך 14 ימים בלבד',
+    'התוקף הממוצע של מנת הדם הינו 14 יום',
     "הרכיב הראשון אשר יורד באיכותו - טסיות",
     "תוקף המנה מוטבע על השקית",
     'לאחר תום ה"תוקף" יש להחזיר בהקדם לבנק הדם',
