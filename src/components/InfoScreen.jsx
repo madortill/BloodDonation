@@ -354,22 +354,28 @@ function InfoScreen() {
         setShowNextBtn(false);
       }
     } else if (subjNum === 3) {
-      // if(!finishedResponseSus) {
-      //   setShowNextBtn(false);
-      // }
       setSubjNum(4);
     } else if (subjNum === 4) {
       setSubjNum(5);
     }
   }
 
+  function fixHebrewQuotes(text) {
+    return text.replace(/”/g, '״').replace(/“/g, '״').replace(/"/g, '״');
+  }
+
   return (
     <div className="info-screen">
       <Navbar subjNum={subjNum} />
       <div className="information-container">
+        {!showQuestion && (subjNum === 0 || subjNum === 2) &&
+          <p className="header-text">{fixHebrewQuotes(data.titles[subjNum][titleNum])}</p>
+        }
+      {!showQuestion && (subjNum === 1 || subjNum === 3 || subjNum === 4 || subjNum === 5 || subjNum === 6 ) &&
+        <p className="header-text">{data.titles[subjNum][0]}</p>
+        }
+
         {!showQuestion && subjNum === 0 && (
-          <>
-            <p className="header-text">{data.titles[subjNum][titleNum]}</p>
             <Introduction
               indexInfo={indexInfo}
               setShowDish={setShowDish}
@@ -383,7 +389,6 @@ function InfoScreen() {
               setNumPartInPlasma={setNumPartInPlasma}
               setFinishedPlasmaExplain={setFinishedPlasmaExplain}
             />
-          </>
         )}
         {showQuestion && (
           <AmericanQuestions
@@ -394,8 +399,6 @@ function InfoScreen() {
           />
         )}
         {!showQuestion && subjNum === 1 && (
-          <>
-            <p className="header-text">{data.titles[subjNum][0]}</p>
             <Indications
               setShowNextBtn={setShowNextBtn}
               setFinishIndictions={setFinishIndictions}
@@ -403,22 +406,16 @@ function InfoScreen() {
               setShowActiveProtocolBtn={setShowActiveProtocolBtn}
               partInIndictions={partInIndictions}
             />
-          </>
         )}
         {!showQuestion && subjNum === 2 && (
-          <>
-            <p className="header-text">{data.titles[subjNum][titleNum]}</p>
             <Logistics
               numLogisticsPart={numLogisticsPart}
               setShowNextBtn={setShowNextBtn}
               setDoneReading={setDoneReading}
               setFinishLogistics={setFinishLogistics}
             />
-          </>
         )}
         {!showQuestion && subjNum === 3 && (
-          <>
-            <p className="header-text">{data.titles[subjNum][0]}</p>
             <Preparation
               setShowNextBtn={setShowNextBtn}
               numPartPreparation={numPartPreparation}
@@ -427,11 +424,8 @@ function InfoScreen() {
               setVideoEnded={setVideoEnded}
               setShowQuestion={setShowQuestion}
             />
-          </>
         )}
         {!showQuestion && subjNum === 4 && (
-          <>
-            <p className="header-text">{data.titles[subjNum][0]}</p>
             <Reactions
               numPartReactions={numPartReactions}
               setShowNextBtn={setShowNextBtn}
@@ -439,20 +433,14 @@ function InfoScreen() {
               setFinishedResponseSus={setFinishedResponseSus}
               numPartResponsesTypes={numPartResponsesTypes}
             />
-          </>
         )}
         {!showQuestion && subjNum === 5 && (
-          <>
-            <p className="header-text">{data.titles[subjNum][0]}</p>
             <Lessons
               numPartLesson={numPartLesson}
               setScrolledToBottom={setScrolledToBottom}
             />
-          </>
         )}
         {!showQuestion && subjNum === 6 && (
-          <>
-            <p className="header-text">{data.titles[subjNum][0]}</p>
             <BloodProducts
               setShowNextBtn={setShowNextBtn}
               inPopOutBloodProducts={inPopOutBloodProducts}
@@ -460,7 +448,6 @@ function InfoScreen() {
               counterDoneBtns={counterDoneBtns}
               setCounterDoneBtns={setCounterDoneBtns}
             />
-          </>
         )}
         {!showQuestion && subjNum === 7 && <EndScreen />}
       </div>
