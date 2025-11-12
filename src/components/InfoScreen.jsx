@@ -199,6 +199,7 @@ function InfoScreen() {
       case 6:
         setShowNextBtn(false);
         setSubjNum(7);
+        // window.reportComplete();
         return;
       default:
         return "Unknown part";

@@ -8,7 +8,7 @@ const LomdaInfo = () => {
   // Instead of an object → use an array of objects for flexibility
   const infoArray = [
     { title: ":מפתחת לומדה", values: ["סמל דני שריקי"] },
-    { title: ":גרפיקאית", values: ["סמל דני שריקי"] },
+    { title: ":גרפיקאית", values: ["סמל דני שריקי", 'סמ"ר ארז קימלוב'] },
     { 
       title: ":מומחי תוכן", 
       values: [
